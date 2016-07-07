@@ -1,0 +1,14 @@
+
+# --------- MISCELLANEOUS --------- #
+**/a.out
+
+# --------- BULLSHIT --------- #
+**/.DS_Store
+**/._.DS_Store
+
+# --------- OBJECTS --------- #
+**/*.o
+**/*.cmi
+**/*.cmx
+**/*.cmo
+
