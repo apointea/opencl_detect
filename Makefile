@@ -7,6 +7,10 @@ MAGENTA=\033[35m
 CYAN=\033[36m[*]
 CLEAR=\033[0m
 
+ifeq ($(HOSTTYPE),)
+	HOSTTYPE = $(shell uname -m)_$(shell uname -s)
+endif
+
 # --- GENERAL --- #
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra
@@ -23,14 +27,19 @@ OBJS_DIR	= ./objs/
 OBJS		= $(SRCS:.c=.o)
 
 # --- INCLUDES --- #
-FRAMEWORK	= -framework OpenCL
+ifeq ($(HOSTTYPE),x86_64_Linux)
+	LIBRARY		= -lOpenCL
+endif
+ifeq ($(HOSTTYPE),x86_64_Darwin)
+	LIBRARY		= -framework OpenCL
+endif
 
 # --- RULES --- #
 all: $(NAME)
 
 $(NAME): $(addprefix $(OBJS_DIR), $(OBJS))
 	@printf "$(CYAN) $(IDENTIFIER) $(CLEAR)Link $(@)\n"
-	@$(CC) $(CFLAGS) $^ -o $(NAME) $(FRAMEWORK)
+	@$(CC) $(CFLAGS) $^ -o $(NAME) $(LIBRARY)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	@if [ ! -d $(OBJS_DIR) ]; then mkdir $(OBJS_DIR); fi

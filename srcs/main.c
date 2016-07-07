@@ -55,16 +55,16 @@ int main() {
 			printf(" %d.%d Parallel compute units: %d\n", j+1, 4, maxComputeUnits);
 			clGetDeviceInfo(devices[j], CL_DEVICE_GLOBAL_MEM_CACHE_SIZE,
 					sizeof(size), &size, NULL);
-			printf(" %d.%d mem cache size: %llu\n", j+1, 5, size);
+			printf(" %d.%d mem cache size: %llu\n", j+1, 5, (long long unsigned int)size);
 			clGetDeviceInfo(devices[j], CL_DEVICE_GLOBAL_MEM_SIZE,
 					sizeof(size), &size, NULL);
-			printf(" %d.%d global mem size: %llu\n", j+1, 6, size);
+			printf(" %d.%d global mem size: %llu\n", j+1, 6, (long long unsigned int)size);
 			clGetDeviceInfo(devices[j], CL_DEVICE_LOCAL_MEM_SIZE,
 					sizeof(size), &size, NULL);
-			printf(" %d.%d local mem size: %llu\n", j+1, 7, size);
+			printf(" %d.%d local mem size: %llu\n", j+1, 7, (long long unsigned int)size);
 			clGetDeviceInfo(devices[j], CL_DEVICE_MAX_MEM_ALLOC_SIZE,
 					sizeof(size), &size, NULL);
-			printf(" %d.%d max mem alloc size: %llu\n", j+1, 8, size);
+			printf(" %d.%d max mem alloc size: %llu\n", j+1, 8, (long long unsigned int)size);
 		}
 
 		free(devices);
